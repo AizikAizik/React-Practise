@@ -9,6 +9,9 @@ import RefsDemo from "./RefsDemo";
 import FocusInput from "./FocusInput";
 import FRParentInput from "./FRParentInput";
 import PortalDemo from "./PortalDemo";
+import Calculation from "./Calculation";
+import Hover from "./Hover";
+import ClickCounter from './ClickCounter'
 
 const styles = {
   textAlign: "center",
@@ -52,14 +55,16 @@ class App extends React.Component {
     if (this.state.ButtonValue === 0) {
       this.setState({ ButtonValue: 0 });
     } else {
-      this.setState({ ButtonValue: this.state.ButtonValue - 1 });
+      this.setState( prev => {
+        return { ButtonValue: prev.ButtonValue - 1 }
+      } );
     }
   };
 
   render() {
     const { ButtonValue } = this.state;
     return (
-      <div style={styles}>
+      <div style={styles} id = "count-dom">
         <button onClick={this.Increment}>Click to Increment</button>
         <br /> <br />
         <button onClick={this.Decrement}>Click to decrement</button>
@@ -86,6 +91,11 @@ class App extends React.Component {
         <FRParentInput />
         <br /> <br />
         <PortalDemo />
+        <br />
+        <Calculation />
+        <br />
+        <ClickCounter name ="Isaac"/>
+        <Hover  name ="Isaac" />
       </div>
     );
   }
