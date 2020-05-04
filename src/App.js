@@ -12,10 +12,12 @@ import PortalDemo from "./PortalDemo";
 import Calculation from "./Calculation";
 import Hover from "./Hover";
 import ClickCounter from './ClickCounter'
+import ComponentC from "./ComponentC";
+import { UserProvider } from './UserContext'
 
 const styles = {
-  textAlign: "center",
-  padding: "15px"
+    textAlign: "center",
+    padding: "15px"
 };
 
 class App extends React.Component {
@@ -23,80 +25,84 @@ class App extends React.Component {
     super();
 
     this.state = {
-      ButtonValue: 0,
-      database: [
-        {
-          id: 1,
-          game: `Fifa 20`
-        },
-        {
-          id: 2,
-          game: `NFS Carbon`
-        },
-        {
-          id: 3,
-          game: `BattleField V`
-        },
-        {
-          id: 4,
-          game: `GTA 5`
-        }
+        ButtonValue: 0,
+        database: [
+            {
+                id: 1,
+                game: `Fifa 20`
+            },
+            {
+                id: 2,
+                game: `NFS Carbon`
+            },
+            {
+                id: 3,
+                game: `BattleField V`
+            },
+            {
+                id: 4,
+                game: `GTA 5`
+            }
       ]
     };
   }
 
   //Increment the button count by 1
   Increment = () => {
-    this.setState({ ButtonValue: this.state.ButtonValue + 1 });
+      this.setState({ ButtonValue: this.state.ButtonValue + 1 });
   };
 
   //Decrement the button count by 1
   Decrement = () => {
-    if (this.state.ButtonValue === 0) {
-      this.setState({ ButtonValue: 0 });
-    } else {
-      this.setState( prev => {
-        return { ButtonValue: prev.ButtonValue - 1 }
-      } );
+      if (this.state.ButtonValue === 0) {
+          this.setState({ ButtonValue: 0 });
+      } else {
+          this.setState(prev => {
+          return { ButtonValue: prev.ButtonValue - 1 }
+      });
     }
   };
 
   render() {
-    const { ButtonValue } = this.state;
-    return (
-      <div style={styles} id = "count-dom">
-        <button onClick={this.Increment}>Click to Increment</button>
-        <br /> <br />
-        <button onClick={this.Decrement}>Click to decrement</button>
-        <br />
-        <br />
-        <p>You have clicked the button {ButtonValue} time(s)</p>
-        <div>
-          <ShowList />
-          <br /> <br />
-          <Demo gameProps={this.state.database} />
-        </div>
-        <LifeCycleA />
-        <br />
-        <FragmentDemo />
-        <br />
-        <Table />
-        <br /> <br />
-        <ParentComp />
-        <br />
-        <RefsDemo />
-        <br /> <br />
-        <FocusInput />
-        <br /> <br />
-        <FRParentInput />
-        <br /> <br />
-        <PortalDemo />
-        <br />
-        <Calculation />
-        <br />
-        <ClickCounter name ="Isaac"/>
-        <Hover  name ="Isaac" />
-      </div>
+      const { ButtonValue } = this.state;
+      return (
+        <div style={styles} id="count-dom">
+            <button onClick={this.Increment}>Click to Increment</button>
+            <br /> <br />
+            <button onClick={this.Decrement}>Click to decrement</button>
+            <br />
+            <br />
+            <p>You have clicked the button {ButtonValue} time(s)</p>
+            <div>
+              <ShowList />
+              <br /> <br />
+              <Demo gameProps={this.state.database} />
+            </div>
+            <LifeCycleA />
+            <br />
+            <FragmentDemo />
+            <br />
+            <Table />
+            <br /> <br />
+            <ParentComp />
+            <br />
+            <RefsDemo />
+            <br /> <br />
+            <FocusInput />
+            <br /> <br />
+            <FRParentInput />
+            <br /> <br />
+            <PortalDemo />
+            <br />
+            <Calculation />
+            <br />
+            <ClickCounter name="Isaac" />
+            <Hover name="Isaac" />
+            <br />
+            <UserProvider value = "Issa">
+                <ComponentC />
+            </UserProvider>
+          </div>
     );
   }
 }
